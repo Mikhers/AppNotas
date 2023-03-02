@@ -1,3 +1,6 @@
 <resources>
     <string name="app_name">Notas</string>
+
+    <string name="accede">Accede</string>
+
 </resources>
