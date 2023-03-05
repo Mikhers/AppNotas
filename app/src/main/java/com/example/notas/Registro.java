@@ -16,7 +16,7 @@ public class Registro extends AppCompatActivity implements View.OnClickListener 
 
     ArrayList<String> list = new ArrayList<String>();
     EditText txt_user,txtPassword;
-    Button btn_nota;
+    Button btn_nota,btn_volver;
     private static final String NOTA = nota();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -24,13 +24,11 @@ public class Registro extends AppCompatActivity implements View.OnClickListener 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_registro);
         btn_nota = (Button) findViewById(R.id.btn_nota);
+        btn_volver = (Button) findViewById(R.id.btn_volver);
         txt_user = (EditText) findViewById(R.id.txt_user);
         txtPassword = (EditText) findViewById(R.id.txtPassword);
 
         btn_nota.setOnClickListener(this);
-
-
-
     }
 
     private static String nota() {
@@ -45,7 +43,7 @@ public class Registro extends AppCompatActivity implements View.OnClickListener 
     @Override
     public void onClick(View view) {
         list.clear();
-        if((txt_user.getText().toString().isEmpty()) && (txtPassword.getText().toString().isEmpty())) {
+        if((txt_user.getText().toString().isEmpty()) || (txtPassword.getText().toString().isEmpty())) {
             Toast.makeText(this,"Error en el usuario o contraseña",Toast.LENGTH_LONG).show();
         }else {
             list.add("Usuario: "+txt_user.getText().toString());
@@ -54,5 +52,10 @@ public class Registro extends AppCompatActivity implements View.OnClickListener 
             class3.putStringArrayListExtra("list", list);
             startActivity(class3);
         }
+    }
+
+    public void volver(View view) {
+        Intent intent = new Intent(Registro.this, MainActivity.class);
+        startActivity(intent);
     }
 }
